@@ -1,5 +1,4 @@
-import { Socket } from "socket.io";
-import Player from "../../../shared/types/Player";
+import Player from "../../../shared/types/player/Player";
 import { SocketId } from "../../../shared/types/Primitives";
 
 class PlayerFactory {

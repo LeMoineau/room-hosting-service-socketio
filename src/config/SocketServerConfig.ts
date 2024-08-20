@@ -1,6 +1,6 @@
 import { RoomId } from "../../../shared/types/Primitives";
-import Room from "../../../shared/types/Room";
-import RoomConfig from "../../../shared/types/RoomConfig";
+import Room from "../../../shared/types/room/Room";
+import RoomConfig from "../../../shared/types/room/RoomConfig";
 
 export const SocketEvent = {
   CONNECTION: "connection",
@@ -25,15 +25,33 @@ export const SocketEvent = {
 export interface ServerToClientEvents {
   "room-created": (r: Room) => void;
   "room-find": (r: Room) => void;
-  "room-not-find": () => void;
   "player-join-your-room": (r: Room) => void;
   "player-ready-change": (r: Room) => void;
+  "game-started": (r: Room) => void;
+  "player-leave-room": (r: Room) => void;
+  "room-left": () => void;
+  "player-become-room-owner": (r: Room) => void;
+  "game-finish": (r: Room) => void;
+
+  // errors
+  "server-error": (err: { type: string; message: string }) => void;
+  "room-not-find": () => void;
+
+  // custom actions
+  [action: `action:${string}`]: (r: Room) => void;
+  action: (actionName: string, r: Room) => void;
 }
 
 export interface ClientToServerEvents {
   "create-a-room": (rc: RoomConfig) => void;
   "join-a-room": (ri: RoomId) => void;
   "player-toggle-ready": (ri: RoomId, ready: boolean) => void;
+  "player-start-game": (ri: RoomId) => void;
+  "player-leave-room": (ri: RoomId) => void;
+  "player-finish-game": (ri: RoomId) => void;
+
+  // custom actions
+  action: (actionName: string, ...args: any[]) => void;
 }
 
 export interface InterServerEvents {
@@ -41,6 +59,5 @@ export interface InterServerEvents {
 }
 
 export interface SocketData {
-  name: string;
-  age: number;
+  inRoom?: boolean;
 }

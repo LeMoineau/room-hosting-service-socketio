@@ -1,3 +1,3 @@
 export namespace DefaultValues {
-  export const TimeoutBattleBegin = 3000;
+  export const RoomVisibility = "private";
 }
