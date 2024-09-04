@@ -22,7 +22,7 @@ export const SocketEvent = {
   PLAYER_TOGGLE_READY: "player-toggle-ready",
 };
 
-export interface ServerToClientEvents {
+export interface BasicServerToClientEvents {
   "room-created": (r: Room) => void;
   "room-find": (r: Room) => void;
   "player-join-your-room": (r: Room) => void;
@@ -42,7 +42,7 @@ export interface ServerToClientEvents {
   action: (actionName: string, r: Room) => void;
 }
 
-export interface ClientToServerEvents {
+export interface BasicClientToServerEvents {
   "create-a-room": (rc: RoomConfig) => void;
   "join-a-room": (ri: RoomId) => void;
   "player-toggle-ready": (ri: RoomId, ready: boolean) => void;
@@ -54,10 +54,10 @@ export interface ClientToServerEvents {
   action: (actionName: string, ...args: any[]) => void;
 }
 
-export interface InterServerEvents {
+export interface BasicInterServerEvents {
   ping: () => void;
 }
 
-export interface SocketData {
+export interface BasicSocketData {
   inRoom?: boolean;
 }

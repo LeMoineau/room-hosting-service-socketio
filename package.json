@@ -1,6 +1,6 @@
 {
   "name": "room-hosting-server-socketio",
-  "version": "1.0.1",
+  "version": "2.0.1",
   "description": "basic room hosting server with socketio",
   "main": "./dist/room-hosting-service-socketio/src/index.js",
   "types": "./dist/room-hosting-service-socketio/src/index.d.ts",
